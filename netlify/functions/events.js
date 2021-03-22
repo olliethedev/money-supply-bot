@@ -26,7 +26,7 @@ exports.handler = async (event, context) => {
             const web = new WebClient(process.env.SLACK_TOKEN);
             await web.chat.postMessage({
                 text: 'Hello guy!',
-                channel: data.event.challenge,
+                channel: data.event.channel,
             });
             return {
                 statusCode: 200,
