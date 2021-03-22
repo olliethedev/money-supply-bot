@@ -24,9 +24,14 @@ exports.handler = async (event, context) => {
             };
         }
         case "event_callback":{
+            const web = new WebClient(process.env.SLACK_TOKEN);
+            const data = await web.chat.postMessage({
+                text: 'Hello guy!',
+                channel: data.event.challenge,
+            });
             return {
                 statusCode: 200,
-                body: JSON.stringify({data:todo})
+                body: JSON.stringify({data:"ok"})
             };
         }
         default: {
