@@ -15,6 +15,7 @@ function verify(data) {
 exports.handler = async (event, context) => {
     console.log(event);
     const data = JSON.parse(event.body);
+    console.log({data});
     switch (data.type) {
         case "url_verification":{
             return {
