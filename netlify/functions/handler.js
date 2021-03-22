@@ -1,22 +1,34 @@
 
-var SlackBot = require("slackbots");
+const { WebClient } = require('@slack/web-api');
 const fetch = require("node-fetch");
-var channel = "slack-bots-tests";
+const querystring = require("querystring");
 
-var bot = new SlackBot({
-  token: process.env.SLACK_TOKEN,
-  name: "MoneySupplyBot"
-});
+
+console.log(process.env.SLACK_TOKEN);
+
+
 
 exports.handler = async (event, context) => {
-    // Only allow POST
-    if (event.httpMethod !== "POST") {
-      return { statusCode: 405, body: "Method Not Allowed" };
-    }
+    // // Only allow POST
+    // if (event.httpMethod !== "POST") {
+    //   return { statusCode: 405, body: "Method Not Allowed" };
+    // }
   
     const params = querystring.parse(event.body);
   
     console.log("DEBUG PARAMS", params);
-  
-    bot.postMessageToChannel(channel, "hello");
+    let data;
+    try {
+        const web = new WebClient(process.env.SLACK_TOKEN);
+        const data = await web.chat.postMessage({
+            text: 'Hello world!',
+            channel: "slack-bots-tests",
+          });
+    } catch (error) {
+        data = error;
+    }
+    return {
+        statusCode: 200,
+        body: JSON.stringify({data})
+    };
   };
