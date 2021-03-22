@@ -24,7 +24,7 @@ exports.handler = async (event, context) => {
         }
         case "event_callback":{
             const web = new WebClient(process.env.SLACK_TOKEN);
-            const data = await web.chat.postMessage({
+            await web.chat.postMessage({
                 text: 'Hello guy!',
                 channel: data.event.challenge,
             });
