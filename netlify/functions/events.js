@@ -1,5 +1,4 @@
-const https = require('https'),
-      qs = require('querystring')
+const { WebClient } = require('@slack/web-api');
 
       console.log(process.env.SLACK_VERIFICATION_TOKEN);
 
