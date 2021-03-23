@@ -1,6 +1,7 @@
 const { ApiSource } = require("./ApiSource");
 const { Formatter } = require("./Formatter");
 
+// function to get the money supply data
 module.exports.getData = async () => {
   const moneyResp = await ApiSource.getMoneySupply();
   const moneyRespJson = await moneyResp.json();

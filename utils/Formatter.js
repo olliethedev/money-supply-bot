@@ -1,5 +1,6 @@
 const moment = require('moment');
 
+//formats dates and value into readable message
 module.exports.Formatter = {
     formatMessage: function(fromTime, fromValue, toTime, toValue) {
         const changed = fromValue < toValue ? "grew" : "shrunk";

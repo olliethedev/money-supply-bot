@@ -2,7 +2,7 @@ const { WebClient } = require("@slack/web-api");
 const { getData } = require('../../utils/Common');
 
 console.log(process.env.SLACK_TOKEN);
-
+// this enpoint can be called publically. intented to invoked for periodic updates 
 exports.handler = async (event, context) => {
   if (event.body) {
     const reqData = JSON.parse(event.body);
@@ -10,6 +10,7 @@ exports.handler = async (event, context) => {
   }
   let data;
   try {
+    // get money supply data
     const parsed = await getData();
     const web = new WebClient(process.env.SLACK_TOKEN);
     data = await web.chat.postMessage({
@@ -23,7 +24,7 @@ exports.handler = async (event, context) => {
   } catch (error) {
     console.trace(error);
     return {
-      statusCode: 200,
+      statusCode: 500,
       body: JSON.stringify({ error }),
     };
   }

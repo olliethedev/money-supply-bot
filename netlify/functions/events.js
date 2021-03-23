@@ -12,6 +12,7 @@ function verify(data) {
     else return "failed" ; 
 }
 
+// This enpoint is called on every mention of the slack bot
 exports.handler = async (event, context) => {
     let data = {type:'event_callback'}; //default value for local dev work
     if(event.body){
@@ -19,15 +20,18 @@ exports.handler = async (event, context) => {
         console.log({data});
     }
     switch (data.type) {
+        //intial verification of the url, required by slack 
         case "url_verification":{
             return {
                 statusCode: 200,
                 body: verify(data)
             };
         }
+        //this type will contain mention event data
         case "event_callback":{
             const web = new WebClient(process.env.SLACK_TOKEN);
             //data.event.text contains message
+            // get money supply data
             const parsed = await getData();
             await web.chat.postMessage({
                 text: parsed,
