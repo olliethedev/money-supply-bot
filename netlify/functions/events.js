@@ -13,8 +13,11 @@ function verify(data) {
 }
 
 exports.handler = async (event, context) => {
-    const data = JSON.parse(event.body);
-    console.log({data});
+    let data = 'event_callback'; //default value for local dev work
+    if(event.body){
+        data = JSON.parse(event.body);
+        console.log({data});
+    }
     switch (data.type) {
         case "url_verification":{
             return {
@@ -37,7 +40,7 @@ exports.handler = async (event, context) => {
         }
         default: {
             return {
-                statusCode: 50,
+                statusCode: 500,
                 body: JSON.stringify({error:"unknown type"})
             };
         }
