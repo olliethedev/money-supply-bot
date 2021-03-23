@@ -15,7 +15,7 @@ exports.handler = async (event, context) => {
     const web = new WebClient(process.env.SLACK_TOKEN);
     data = await web.chat.postMessage({
       text: parsed,
-      channel: "slack-bots-tests",
+      channel: "random",
     });
     return {
       statusCode: 200,
