@@ -12,8 +12,6 @@
     "@slack/events-api": "^3.0.0",
     "@slack/web-api": "^6.1.0",
     "moment": "^2.29.1",
-    "node-fetch": "^2.6.1",
-    "querystring": "^0.2.1",
-    "slackbots": "^1.2.0"
+    "node-fetch": "^2.6.1"
   }
 }
