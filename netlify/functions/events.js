@@ -1,6 +1,7 @@
 const { WebClient } = require('@slack/web-api');
+const { getData } = require('../../utils/Common');
 
-      console.log(process.env.SLACK_VERIFICATION_TOKEN);
+console.log(process.env.SLACK_VERIFICATION_TOKEN);
 
 // Verify Url - https://api.slack.com/events/url_verification
 function verify(data) {
@@ -12,7 +13,6 @@ function verify(data) {
 }
 
 exports.handler = async (event, context) => {
-    console.log(event);
     const data = JSON.parse(event.body);
     console.log({data});
     switch (data.type) {
@@ -24,8 +24,10 @@ exports.handler = async (event, context) => {
         }
         case "event_callback":{
             const web = new WebClient(process.env.SLACK_TOKEN);
+            //data.event.text contains message
+            const parsed = await getData();
             await web.chat.postMessage({
-                text: 'Hello guy!',
+                text: parsed,
                 channel: data.event.channel,
             });
             return {
