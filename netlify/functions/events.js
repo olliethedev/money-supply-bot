@@ -13,7 +13,7 @@ function verify(data) {
 }
 
 exports.handler = async (event, context) => {
-    let data = 'event_callback'; //default value for local dev work
+    let data = {type:'event_callback'}; //default value for local dev work
     if(event.body){
         data = JSON.parse(event.body);
         console.log({data});
