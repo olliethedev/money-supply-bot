@@ -10,6 +10,6 @@ module.exports.Formatter = {
         const fromTimeMonth = moment(fromTime).format("MMMM");
         const toTimeMonth = moment(toTime).format("MMMM");
         const YoYpercent = ((toValue - yearAgoValue)/ yearAgoValue * 100.00).toFixed(2); 
-        return `:flag-ca: Canada's money supply ${changed} from $${fromValueClean}T in ${fromTimeMonth} to $${toValueClean}T in ${toTimeMonth}, a change of ${percent}% (${YoYpercent}%YoY)`;
+        return `:flag-ca: Canada's money supply ${changed} from $${fromValueClean}T in ${fromTimeMonth} to $${toValueClean}T in ${toTimeMonth}, a change of ${percent}% from last month and ${YoYpercent}% from one year ago.`;
     }
 }   
