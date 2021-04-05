@@ -9,7 +9,7 @@ module.exports.ApiSource =   {
         const moneyData = respJson.chart_data[0][0].raw_data;
         const moneyDataFrom = moneyData[moneyData.length-2];
         const moneyDataTo = moneyData[moneyData.length-1];
-        const moneyDataYearAgo = moneyData[moneyData.length-11];
+        const moneyDataYearAgo = moneyData[moneyData.length-10];
         return {moneyDataFrom, moneyDataTo, moneyDataYearAgo};
     }
 }
