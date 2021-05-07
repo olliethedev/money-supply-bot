@@ -9,7 +9,7 @@ After that simply call
 SLACK_TOKEN=xoxb-restofslackaccesstokenhere SLACK_VERIFICATION_TOKEN=restofslackverificationtoken netlify dev
 ```
 
-## To Deloploy
+## To Deploy
 Create new netlify site from git /master branch and add `SLACK_TOKEN` and `SLACK_VERIFICATION_TOKEN` to the environment variables.
 
 To deploy new build just commit to /master branch.
