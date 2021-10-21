@@ -4,7 +4,6 @@ const { Formatter } = require("./Formatter");
 // function to get the money supply data
 module.exports.getData = async () => {
   const moneyResp = await ApiSource.getMoneySupply();
-  console.log(moneyResp);
   const moneyRespJson = await moneyResp.json();
   const { moneyDataFrom, moneyDataTo, moneyDataYearAgo } = ApiSource.parseResponse(moneyRespJson);
   const parsed = Formatter.formatMessage(
