@@ -42,6 +42,9 @@ module.exports.getData = async () => {
         },
       },
       {
+        type: "divider",
+      },
+      {
         type: "section",
         text: {
           type: "mrkdwn",
