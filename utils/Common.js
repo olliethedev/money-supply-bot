@@ -6,6 +6,7 @@ module.exports.getData = async (moneySupplyType) => {
   const moneyResp = await ApiSource.getMoneySupply('M1');
   const money2Resp = await ApiSource.getMoneySupply('M2');
   const moneyRespJson = await moneyResp.json();
+  const money2RespJson = await money2Resp.json();
   const { moneyDataFrom, moneyDataTo, moneyDataYearAgo } = ApiSource.parseResponse(moneyRespJson);
   const { money2DataFrom, money2DataTo, money2DataYearAgo } = ApiSource.parseResponse(money2RespJson);
   const parsed = Formatter.formatMessage(
