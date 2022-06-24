@@ -30,7 +30,7 @@ module.exports.getData = async (moneySupplyType) => {
     money2DataTo[0],
     money2DataTo[1],
     money2DataYearAgo[1],
-    money2SupplyType
+    moneySupplyType
   );
   return {
     blocks: [
