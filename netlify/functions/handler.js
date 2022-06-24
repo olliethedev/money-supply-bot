@@ -14,7 +14,7 @@ exports.handler = async (event, context) => {
     const parsed = await getData();
     const web = new WebClient(process.env.SLACK_TOKEN);
     data = await web.chat.postMessage({
-      blocks: parsed,
+      text: parsed,
       channel: "random",
     });
     return {
