@@ -2,7 +2,7 @@ const { ApiSource } = require("./ApiSource");
 const { Formatter } = require("./Formatter");
 
 // function to get the money supply data
-module.exports.getData = async (moneySupplyType) => {
+module.exports.getData = async () => {
   const moneyResp = await ApiSource.getMoneySupply("M1");
   const money2Resp = await ApiSource.getMoneySupply("M2");
   const moneyRespJson = await moneyResp.json();
@@ -22,7 +22,7 @@ module.exports.getData = async (moneySupplyType) => {
     moneyDataTo[0],
     moneyDataTo[1],
     moneyDataYearAgo[1],
-    moneySupplyType
+    "M1"
   );
   const parsed2 = Formatter.formatMessage(
     money2DataFrom[0],
@@ -30,7 +30,7 @@ module.exports.getData = async (moneySupplyType) => {
     money2DataTo[0],
     money2DataTo[1],
     money2DataYearAgo[1],
-    moneySupplyType
+    "M2"
   );
   return {
     blocks: [
