@@ -34,7 +34,7 @@ exports.handler = async (event, context) => {
             // get money supply data
             const parsed = await getData();
             await web.chat.postMessage({
-                ...parsed,
+                blocks:parsed,
                 channel: data.event.channel,
             });
             return {

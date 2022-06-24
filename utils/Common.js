@@ -3,54 +3,50 @@ const { Formatter } = require("./Formatter");
 
 // function to get the money supply data
 module.exports.getData = async () => {
-  const moneyResp = await ApiSource.getMoneySupply("M1");
-  const money2Resp = await ApiSource.getMoneySupply("M2");
+  const blocks = [];
+  const moneyTypes = ["M1", "M2", "M3"];
+  for (let i = 0; i < moneyTypes.length; i++) {
+    const moneyType = moneyTypes[i];
+    try {
+      const blockData = await getBlockFromJson(moneyType);
+      blocks.push(blockData);
+      if (i < moneyTypes.length - 1) {
+        blocks.push({
+          type: "divider",
+        });
+      }
+    } catch (ex) {
+      blocks.push({
+        type: "section",
+        text: {
+          type: "plain_text",
+          text: ":warning: Error loading: " + moneyType,
+          emoji: true,
+        },
+      });
+    }
+  }
+  return blocks;
+};
+
+const getBlockFromJson = async (moneyType) => {
+  const moneyResp = await ApiSource.getMoneySupply(moneyType);
   const moneyRespJson = await moneyResp.json();
-  console.log(moneyRespJson);
-  const money2RespJson = await money2Resp.json();
-  console.log(money2RespJson);
   const { moneyDataFrom, moneyDataTo, moneyDataYearAgo } =
     ApiSource.parseResponse(moneyRespJson);
-  const {
-    moneyDataFrom: money2DataFrom,
-    moneyDataTo: money2DataTo,
-    moneyDataYearAgo: money2DataYearAgo,
-  } = ApiSource.parseResponse(money2RespJson);
   const parsed = Formatter.formatMessage(
     moneyDataFrom[0],
     moneyDataFrom[1],
     moneyDataTo[0],
     moneyDataTo[1],
     moneyDataYearAgo[1],
-    "M1"
-  );
-  const parsed2 = Formatter.formatMessage(
-    money2DataFrom[0],
-    money2DataFrom[1],
-    money2DataTo[0],
-    money2DataTo[1],
-    money2DataYearAgo[1],
-    "M2"
+    moneyType
   );
   return {
-    blocks: [
-      {
-        type: "section",
-        text: {
-          type: "mrkdwn",
-          text: parsed,
-        },
-      },
-      {
-        type: "divider",
-      },
-      {
-        type: "section",
-        text: {
-          type: "mrkdwn",
-          text: parsed2,
-        },
-      },
-    ],
+    type: "section",
+    text: {
+      type: "mrkdwn",
+      text: parsed,
+    },
   };
 };
