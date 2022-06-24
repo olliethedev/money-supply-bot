@@ -11,7 +11,7 @@ module.exports.Formatter = {
         // const fromTimeMonth = moment(fromTime).format("MMMM");
         const toTimeMonth = moment(toTime).format("MMMM");
         // const YoYpercent = ((toValue - yearAgoValue)/ yearAgoValue * 100.00).toFixed(2); 
-        return `:flag-ca: *${moneySupplyType}* in ${toTimeMonth} \n:${changed}: Monthly change: *${isUp?"+":"-"}${percent}%* `
+        return `:flag-ca: *${moneySupplyType}* in ${toTimeMonth} \n:${changed}: Monthly change: *${percent}%* `
         // return ` Canada's ${moneySupplyType} ${changed} from $${fromValueClean}T in ${fromTimeMonth} to $${toValueClean}T in ${toTimeMonth}, a change of ${percent}% from last month.`;
     }
 }   
